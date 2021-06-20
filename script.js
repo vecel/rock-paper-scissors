@@ -5,7 +5,7 @@ const SCISSORS = 2;
 let computerWins = 0;
 let playerWins = 0;
 
-game();
+// game();
 
 function game() {
     for (let i = 0; i < 5; ++i) console.log(playRound());
