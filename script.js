@@ -7,6 +7,19 @@ let playerWins = 0;
 
 // game();
 
+const playButton = document.querySelector('.playButton');
+const gameInterface = document.querySelector('.gameInterface');
+
+playButton.addEventListener('click', () => {
+    removePlayButton();
+    showGameInterface();
+    console.log('Removed play button and showed game interface');
+})
+
+function initGame() {
+
+}
+
 function game() {
     for (let i = 0; i < 5; ++i) console.log(playRound());
     const finalResult = computeFinalResult();
@@ -49,4 +62,13 @@ function computeFinalResult() {
     if (playerWins > computerWins) return "Player won.";
     if (playerWins < computerWins) return "Computer won.";
     return "Draw.";
+}
+
+function removePlayButton() {
+    const playButtonDiv = document.querySelector('div.playButtonContainer');
+    playButtonDiv.remove();
+}
+
+function showGameInterface() {
+    gameInterface.style.display = 'grid';
 }
