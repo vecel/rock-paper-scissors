@@ -1,14 +1,12 @@
-const ROCK = 0;
-const PAPER = 1;
-const SCISSORS = 2;
-
-let computerWins = 0;
-let playerWins = 0;
-
-// game();
+const ROCK = 1;
+const PAPER = 2;
+const SCISSORS = 3;
 
 const playButton = document.querySelector('.playButton');
 const gameInterface = document.querySelector('.gameInterface');
+
+let computerWins = 0;
+let playerWins = 0;
 
 playButton.addEventListener('click', () => {
     removePlayButton();
@@ -21,27 +19,21 @@ function initGame() {
 }
 
 function game() {
-    for (let i = 0; i < 5; ++i) console.log(playRound());
-    const finalResult = computeFinalResult();
-    console.log("Final result: " + finalResult);
+    let gameContinue = true;
+
+    while (gameContinue) {
+        // czekaj na input gracza
+        // wylosuj odpowiedz komputera
+        playRound();
+
+        if (computerWins >= 5 || playerWins >= 5) gameContinue = false;
+    }
 }
 
 function playRound() {
     const playerSelection = playerPlay();
     const computerSelection = computerPlay();
-    if (playerSelection == -1) {
-        computerWins++;
-        return "You entered improper value, computer won";
-    } 
-    if (playerSelection - computerSelection == 1 ||
-        playerSelection - computerSelection == -2) {
-            playerWins++;
-            return "You won";
-    }
-    if (playerSelection == computerSelection) return "Draw";
     
-    computerWins++;
-    return "Computer won";
 }
 
 function computerPlay() {
@@ -49,13 +41,9 @@ function computerPlay() {
 }
 
 function playerPlay() {
-    let move = prompt("Enter your selection: ");
-    if (move != null) move = move.toLowerCase();
-
-    if (move === "rock") return ROCK;
-    if (move === "paper") return PAPER;
-    if (move === "scissors") return SCISSORS;
-    return -1;
+    while (true) {
+        if ()
+    }
 }
 
 function computeFinalResult() {
