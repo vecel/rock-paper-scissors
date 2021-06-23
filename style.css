@@ -114,11 +114,39 @@ svg {
     box-shadow: 0 0 1.5em red;
 }
 
+#computerSelection > .itemContainer > svg {
+    animation: computerSelection;
+    animation-duration: 2s;
+}
+
+#computerSelection > .itemContainer > svg.paper {
+    animation-delay: 0.5s;
+}
+
+#computerSelection > .itemContainer > svg.scissors {
+    animation-delay: 1s;
+}
+
 .gameItem#score {
     background-color: pink;
     grid-column-start: 1;
     grid-column-end: 3;
     
+}
+
+@keyframes computerSelection {
+    25% {
+        box-shadow: 0 0 1.5em red;
+    }
+    50% {
+        box-shadow: none;
+    }
+    75% {
+        box-shadow: 0 0 1.5em red;
+    }
+    100% {
+        box-shadow: none;
+    }
 }
 
 @media screen and (max-width: 1200px) {

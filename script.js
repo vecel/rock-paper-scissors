@@ -35,7 +35,6 @@ function playRound(playerSelection) {
 
     animateComputerSelection(computerMove);
 
-    // przedstaw i zaktualizuj wynik
     computeResult(playerMove, computerMove);
     updateResult();
 
@@ -61,8 +60,12 @@ function animateComputerSelection(computerMove) {
 function computeResult(plaMove, comMove) {
     if (plaMove === comMove) return;
     if (plaMove - comMove === 1 ||
-        plaMove - comMove === -2) playerWins++;
-    else computerWins++;
+        plaMove - comMove === -2) {
+        playerWins++;
+    }
+    else {
+        computerWins++;
+    }
 }
 
 function updateResult() {
