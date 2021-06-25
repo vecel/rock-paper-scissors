@@ -63,18 +63,17 @@ function computerPlay() {
     return Math.floor(Math.random() * 3);
 }
 
-function animateComputerSelection(computerMove) {
+async function animateComputerSelection(computerMove) {
     // zrob animacje
-    // na koncu podswietl div-a, ktorego wybral komputer
-    for (let i = 0; i < 2; ++i) {
-        computerItems.forEach((selectedSvg, selectionType) => {
-            highlightComputerSelection(selectionType)
-        })
+    
+    for (let i = 0; i < 4; ++i) {
+        for (let el of computerItems)
+            await delayedBoxShadowChange(el, 300 - 80 * i);       
     }
     
     console.log('animate computer selection ' + computerMove);
     
-    highlightComputerSelection(computerMove, 1500);
+    highlightComputerSelection(computerMove, 2000);
 }
 
 function computeResult(plaMove, comMove) {
@@ -120,6 +119,16 @@ function highlightComputerSelection(computerMove, miliseconds = 1000) {
     setTimeout(() => {
         computerItems[computerMove].style.boxShadow = 'none';
     }, miliseconds);
+}
+
+function delayedBoxShadowChange(computerItem, miliseconds) {
+    computerItem.style.boxShadow = '0 0 1.5em red';
+    return new Promise((resolve, reject) => {
+        setTimeout(() => {
+            computerItem.style.boxShadow = 'none';
+            resolve();
+        }, miliseconds);
+    })
 }
 
 function removePlayButton() {
