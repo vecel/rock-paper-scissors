@@ -10,6 +10,8 @@ const playButtonDiv = document.querySelector('div.playButtonContainer');
 const gameInterface = document.querySelector('.gameInterface');
 
 const playerItems = document.querySelectorAll('#playerSelection > .itemContainer');
+const computerItems = document.querySelectorAll('#computerSelection > .itemContainer > svg');
+console.log(computerItems);
 
 const scoreText = document.querySelector('#scoreValue');
 
@@ -64,6 +66,15 @@ function computerPlay() {
 function animateComputerSelection(computerMove) {
     // zrob animacje
     // na koncu podswietl div-a, ktorego wybral komputer
+    for (let i = 0; i < 2; ++i) {
+        computerItems.forEach((selectedSvg, selectionType) => {
+            highlightComputerSelection(selectionType)
+        })
+    }
+    
+    console.log('animate computer selection ' + computerMove);
+    
+    highlightComputerSelection(computerMove, 1500);
 }
 
 function computeResult(plaMove, comMove) {
@@ -102,6 +113,13 @@ function resetGame() {
     gameInterface.style.display = 'none';
     playButtonDiv.style.display = 'flex';
     console.log('Reset game');
+}
+
+function highlightComputerSelection(computerMove, miliseconds = 1000) {
+    computerItems[computerMove].style.boxShadow = '0 0 1.5em red';
+    setTimeout(() => {
+        computerItems[computerMove].style.boxShadow = 'none';
+    }, miliseconds);
 }
 
 function removePlayButton() {
