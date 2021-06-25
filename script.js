@@ -2,7 +2,11 @@ const ROCK = 0;
 const PAPER = 1;
 const SCISSORS = 2;
 
+const POINTS_TO_WIN = 5;
+
 const playButton = document.querySelector('.playButton');
+const playButtonDiv = document.querySelector('div.playButtonContainer');
+
 const gameInterface = document.querySelector('.gameInterface');
 
 const playerItems = document.querySelectorAll('#playerSelection > .itemContainer');
@@ -38,6 +42,11 @@ function playRound(playerSelection) {
     computeResult(playerMove, computerMove);
     updateResult();
 
+    if (gameEnd()) {
+        displayFinalResult();
+        resetGame();
+    }
+
     activateGameItems(true);
 }
 
@@ -72,15 +81,31 @@ function updateResult() {
     scoreText.textContent = `Player ${playerWins} | ${computerWins} Computer`;
 }
 
-function computeFinalResult() {
-    if (playerWins > computerWins) return "Player won.";
-    if (playerWins < computerWins) return "Computer won.";
-    return "Draw.";
+function gameEnd() {
+    if (computerWins === POINTS_TO_WIN) return true;
+    if (playerWins === POINTS_TO_WIN) return true;
+    return false;
+}
+
+function displayFinalResult() {
+    let gameEndMessage;
+    if (playerWins >= 5) gameEndMessage = 'Player won';
+    if (computerWins >= 5) gameEndMessage = 'Computer won';
+    
+    alert(gameEndMessage);
+}
+
+function resetGame() {
+    playerWins = 0;
+    computerWins = 0;
+    updateResult();
+    gameInterface.style.display = 'none';
+    playButtonDiv.style.display = 'flex';
+    console.log('Reset game');
 }
 
 function removePlayButton() {
-    const playButtonDiv = document.querySelector('div.playButtonContainer');
-    playButtonDiv.remove();
+    playButtonDiv.style.display = 'none';
 }
 
 function showGameInterface() {
