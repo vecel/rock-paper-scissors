@@ -114,6 +114,7 @@ svg {
     box-shadow: 0 0 1.5em red;
 }
 
+/*
 #computerSelection > .itemContainer > svg {
     animation: computerSelection;
     animation-duration: 2s;
@@ -126,6 +127,7 @@ svg {
 #computerSelection > .itemContainer > svg.scissors {
     animation-delay: 1s;
 }
+*/
 
 .gameItem#score {
     background-color: pink;
