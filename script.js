@@ -4,6 +4,16 @@ const SCISSORS = 2;
 
 const POINTS_TO_WIN = 5;
 
+const RED_SHADOW = '0 0 1.5em red';
+
+/*  
+Animation duration is calculated on the basis of total time needed for animateComputerSelection
+function to execute. Its not ideal solution, but it is the simplest one with my current knowledge.
+This value is used in playRound function as delay, because before code was executing even thoug the
+animation function wasn't over.  
+*/
+const animationDuration = 3 * 720 + 2000;
+
 const playButton = document.querySelector('.playButton');
 const playButtonDiv = document.querySelector('div.playButtonContainer');
 
@@ -30,26 +40,35 @@ playerItems.forEach((selectionDiv, selectionType) => {
     })
 });
 
-function playRound(playerSelection) {
-    activateGameItems(false);
-
+function playRound(playerSelection) {    
     const playerMove = playerSelection;
     const computerMove = computerPlay();
     
-    /*console.log(`Playing round, player chose ${playerSelection}, computer
-        chose ${computerMove}`);*/
+    activateGameItems(false);
+    playerItems[playerMove].style.boxShadow = RED_SHADOW;
+
+    console.log(`Playing round, player chose ${playerSelection}, computer
+        chose ${computerMove}`);
 
     animateComputerSelection(computerMove);
 
-    computeResult(playerMove, computerMove);
-    updateResult();
+    /* 
+    setTimeout is used to delay executing code until animateComputerSelection function is over. I use it because
+    I don't know how to use Promises yet and it is not the time yet to learn such a concept.
+    */
+    setTimeout(() => {
+        computeResult(playerMove, computerMove);
+        updateResult();
 
-    if (gameEnd()) {
-        displayFinalResult();
-        resetGame();
-    }
+        if (gameEnd()) {
+            displayFinalResult();
+            resetGame();
+        }
 
-    activateGameItems(true);
+        playerItems[playerMove].style.boxShadow = 'none';
+        activateGameItems(true);
+    }, animationDuration);
+    
 }
 
 function activateGameItems(mode) {
@@ -64,8 +83,9 @@ function computerPlay() {
 }
 
 async function animateComputerSelection(computerMove) {
-    // zrob animacje
-    
+    /*
+    Every time and delay change has to be taken into calculation of animationDuration const variable
+    */
     for (let i = 0; i < 4; ++i) {
         for (let el of computerItems)
             await delayedBoxShadowChange(el, 300 - 80 * i);       
@@ -115,14 +135,14 @@ function resetGame() {
 }
 
 function highlightComputerSelection(computerMove, miliseconds = 1000) {
-    computerItems[computerMove].style.boxShadow = '0 0 1.5em red';
+    computerItems[computerMove].style.boxShadow = RED_SHADOW;
     setTimeout(() => {
         computerItems[computerMove].style.boxShadow = 'none';
     }, miliseconds);
 }
 
 function delayedBoxShadowChange(computerItem, miliseconds) {
-    computerItem.style.boxShadow = '0 0 1.5em red';
+    computerItem.style.boxShadow = RED_SHADOW;
     return new Promise((resolve, reject) => {
         setTimeout(() => {
             computerItem.style.boxShadow = 'none';
