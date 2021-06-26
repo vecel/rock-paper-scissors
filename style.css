@@ -37,14 +37,24 @@ h1 {
 }
 
 h2 {
-    color: white;
     text-decoration: none;
     font-size: 32px;
     text-align: center;
+    margin: 8px;
 }
 
 p {
     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    margin: 8px;
+    font-size: 26px;
+}
+
+p.alignEnd {
+    text-align: end;
+}
+
+p.alignStart {
+    text-align: start;
 }
 
 button {
@@ -114,41 +124,22 @@ svg {
     box-shadow: 0 0 1.5em red;
 }
 
-/*
-#computerSelection > .itemContainer > svg {
-    animation: computerSelection;
-    animation-duration: 2s;
-}
-
-#computerSelection > .itemContainer > svg.paper {
-    animation-delay: 0.5s;
-}
-
-#computerSelection > .itemContainer > svg.scissors {
-    animation-delay: 1s;
-}
-*/
-
-.gameItem#score {
-    background-color: pink;
+.gameItem#scoreContainer {
     grid-column-start: 1;
     grid-column-end: 3;
-    
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
-@keyframes computerSelection {
-    25% {
-        box-shadow: 0 0 1.5em red;
-    }
-    50% {
-        box-shadow: none;
-    }
-    75% {
-        box-shadow: 0 0 1.5em red;
-    }
-    100% {
-        box-shadow: none;
-    }
+.scorePlayerLabel {
+    width: 150px;
+}
+
+#score {
+    display: flex;
+    flex-direction: row;
+    margin: 8px;
 }
 
 @media screen and (max-width: 1200px) {
