@@ -108,7 +108,7 @@ function computeResult(plaMove, comMove) {
 }
 
 function updateResult() {
-    scoreText.textContent = `Player ${playerWins} | ${computerWins} Computer`;
+    scoreText.textContent = ` ${playerWins} | ${computerWins} `;
 }
 
 function gameEnd() {
