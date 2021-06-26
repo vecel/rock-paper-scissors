@@ -59,8 +59,16 @@ p.alignStart {
 
 button {
     border: none;
-    background-color: rgba(255, 255, 255, 0.8);
-    font-size: 28px;
+    background-color: var(--primaryColor);
+    color: white;
+    font-size: 32px;
+    transition-duration: 0.4s;
+}
+
+button:hover {
+    border: solid var(--primaryColor);
+    background-color: rgba(0, 0, 0, 0.1);
+    color: #343434;
 }
 
 svg {
@@ -76,6 +84,7 @@ svg {
     display: flex;
     justify-content: center;
     padding: 40px;
+    margin-top: 130px;
 }
 
 .playButton {
