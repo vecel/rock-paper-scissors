@@ -172,5 +172,6 @@ function showGameInterface() {
 let rickRoll = () => {
     const rickRollDiv = document.querySelector('.rickRoll');
     rickRollDiv.style.display = 'initial';
-    console.log('You got rick-rolled!!!');
+    console.log('You got rick-rolled!');
+    console.log('To remove Rick Astley image and see website you wanted refresh site and change openRickRoll value to false in console');
 }
