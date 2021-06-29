@@ -166,7 +166,9 @@ svg {
     }
 }
 
-/* below style is used only for rick-rolling, it is not a part of an actual site */
+/* 
+Below styles are used only for rick-rolling, they are not a part of an actual site 
+*/
 .rickRoll {
     display: none;
 }

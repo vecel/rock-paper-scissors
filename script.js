@@ -28,17 +28,16 @@ const scoreText = document.querySelector('#scoreValue');
 let computerWins = 0;
 let playerWins = 0;
 
-// for rick-rolling, change this value if you don't want Rick Astley to appear
-let openRickRoll = true;
+// for rick-rolling, change this value if you want Rick Astley to appear
+let openRickRoll = false;
 
 playButton.addEventListener('click', () => {
+    removePlayButton();
     if (!openRickRoll) {
-        removePlayButton();
         showGameInterface();
         console.log('Removed play button and showed game interface');
     }
     if (openRickRoll) {
-        removePlayButton();
         rickRoll();
     }
 })
@@ -168,7 +167,9 @@ function showGameInterface() {
     gameInterface.style.display = 'grid';
 }
 
-/* below function is used for rick-rolling, it is not a part of actual site */
+/* 
+below function is used for rick-rolling, it is not a part of actual site 
+*/
 let rickRoll = () => {
     const rickRollDiv = document.querySelector('.rickRoll');
     rickRollDiv.style.display = 'initial';
